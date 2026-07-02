@@ -1,0 +1,24 @@
+[project]
+name = "crewai-agent-azure"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "azure-monitor-opentelemetry>=1.8.2",
+    "azure-storage-blob>=12.30.0",
+    "crewai>=1.15.1",
+    "crewai-tools>=1.15.1",
+    "fastapi>=0.139.0",
+    "firecrawl-py>=4.31.0",
+    "langsmith[claude-agent-sdk]>=0.9.6",
+    "opentelemetry-api>=1.42.1",
+    "opentelemetry-sdk>=1.42.1",
+    "psycopg2-binary>=2.9.12",
+    "python-dotenv>=1.2.2",
+    "requests>=2.34.2",
+    "sqlalchemy>=2.0.51",
+    "streamlit>=1.58.0",
+    "uvicorn>=0.49.0",
+    "yfinance>=1.5.1",
+]
