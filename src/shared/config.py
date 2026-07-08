@@ -28,13 +28,22 @@ class Settings(BaseSettings):
     """
 
 # --- AI Configuration (The Brain) ---
-    groq_api_key: str = Field(
-        ..., 
+    groq_api_key: Optional[str] = Field(
+        None, 
         description="Groq API Key for the LLM agents."
     )
-    groq_model_name: str = Field(
+    groq_model_name: Optional[str] = Field(
         "groq/llama-3.3-70b-versatile", 
         description="The Groq model to use for agents."
+    )
+    
+    openrouter_api_key: str = Field(
+        ...,
+        description="OpenRouter API Key for the LLM agents."
+    )
+    openrouter_model_name: str = Field(
+        "openrouter/google/gemini-2.5-flash",
+        description="The OpenRouter model to use for agents."
     )
     
     # --- Tool Configuration (The Eyes) ---
@@ -58,7 +67,7 @@ class Settings(BaseSettings):
         None, 
         description="Connection string for Azure PostgreSQL Database."
     )
-    azure_blob_storage_connection_string: Optional[str] = Field(
+    azure_blob_connection_string: Optional[str] = Field(
         None, 
         description="Connection string for Azure Blob Storage."
     )

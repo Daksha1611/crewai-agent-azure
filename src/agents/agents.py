@@ -11,9 +11,10 @@ Agents:
 """
 
 from typing import Tuple
-from crewai import Agent
+from crewai import Agent, LLM
 from src.agents.tools.financial import FundamentalAnalysisTool, CompareStocksTool
 from src.agents.tools.scraper import SentimentSearchTool
+from src.shared.config import settings
 
 def create_agents() -> Tuple[Agent, Agent]:
     """
@@ -22,6 +23,13 @@ def create_agents() -> Tuple[Agent, Agent]:
     Returns:
         Tuple[Agent, Agent]: A tuple containing (quant_agent, strategist_agent).
     """
+
+    # Initialize the LLM with OpenRouter config
+    openrouter_llm = LLM(
+        model=settings.openrouter_model_name,
+        api_key=settings.openrouter_api_key,
+        base_url="https://openrouter.ai/api/v1"
+    )
 
     # ==========================================================================
     # 1. The Quantitative Analyst (The "Math Brain")
@@ -39,7 +47,8 @@ def create_agents() -> Tuple[Agent, Agent]:
             "Your reports are concise, number-heavy, and brutally honest."
         ),
         verbose=True,
-        memory=True,
+        memory=False,
+        llm=openrouter_llm,
         tools=[
             FundamentalAnalysisTool(),
             CompareStocksTool()
@@ -63,7 +72,8 @@ def create_agents() -> Tuple[Agent, Agent]:
             "to give a final 'Buy', 'Sell', or 'Hold' recommendation."
         ),
         verbose=True,
-        memory=True,
+        memory=False,
+        llm=openrouter_llm,
         tools=[
             SentimentSearchTool()
         ],

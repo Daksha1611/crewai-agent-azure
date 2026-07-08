@@ -13,8 +13,10 @@ import os
 class StorageService:
     def __init__(self):
         # Initialize the connection using string from .env
-        self.service_client = BlobServiceClient.from_connection_string(
-            settings.azure_blob_storage_connection_string)
+        conn_str = settings.azure_blob_connection_string
+        if not conn_str:
+            raise ValueError("AZURE_BLOB_CONNECTION_STRING is not configured.")
+        self.service_client = BlobServiceClient.from_connection_string(conn_str)
         self.container_name = "reports"
         # Ensure thay the container exists (like creating a folder)
         self._ensure_container_exists()

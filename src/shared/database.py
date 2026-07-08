@@ -28,9 +28,10 @@ class FinancialReport(Base):
 class DatabaseService:
     def __init__(self):
         # Connect to Azure postgres
-        # We need to ensure that the connection string startswith 'postgresql://'
         db_url = settings.azure_postgres_connection_string
-        if db_url and db_url.startswith("postgres://"):
+        if not db_url:
+            raise ValueError("AZURE_POSTGRES_CONNECTION_STRING is not configured.")
+        if db_url.startswith("postgres://"):
             db_url = db_url.replace("postgres://" , "postgresql://", 1)
 
         self.engine = create_engine(db_url)

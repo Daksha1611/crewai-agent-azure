@@ -15,7 +15,7 @@ from crewai import Crew, Process
 from src.agents.agents import create_agents
 from src.agents.tasks import create_tasks
 
-def run_financial_crew(ticker: str) -> str:
+async def run_financial_crew(ticker: str) -> str:
     """
     Initializes and executes the Financial Analysis Crew for a specific stock.
 
@@ -45,12 +45,12 @@ def run_financial_crew(ticker: str) -> str:
         tasks=tasks,
         process=Process.sequential,
         verbose=True,  # Logs every step to the console (great for debugging)
-        memory=True,   # Enables agents to remember past interactions,
+        memory=False,  # Disabled to avoid requiring OpenAI embedding keys
         tracing=True   # Enables LangSmith tracing for the entire crew
     )
     
     # 4. Start the Job
     print(f"\n🚀 Kicking off Financial Analysis for {ticker}...")
-    result = financial_crew.kickoff()
+    result = await financial_crew.kickoff_async()
     
     return result

@@ -31,7 +31,7 @@ async def analyze_stock(request: AnalysisRequest):
     try:
         # 1. Run the AI Crew
         print(f"🚀 API Request received for: {ticker}")
-        result_object = run_financial_crew(ticker)
+        result_object = await run_financial_crew(ticker)
         
         # Convert CrewOutput to String (Crucial fix from before)
         report_text = str(result_object)
