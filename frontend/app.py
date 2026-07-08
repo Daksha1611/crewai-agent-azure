@@ -137,31 +137,31 @@ if 'analysis_result' in st.session_state:
         with st.expander("See Raw API Response (JSON)"):
             st.json(data)
 
-'''
-How to Run the Full Application
-To run the complete system, you need two separate terminal windows running at the same time. One for the Backend (Brain) and one for the Frontend (Face).
+# '''
+# How to Run the Full Application
+# To run the complete system, you need two separate terminal windows running at the same time. One for the Backend (Brain) and one for the Frontend (Face).
 
-Terminal 1: Start the Backend API
-This starts the FastAPI server that the AI agents live on.
+# Terminal 1: Start the Backend API
+# This starts the FastAPI server that the AI agents live on.
 
-# Make sure you are in the root project folder
+# # Make sure you are in the root project folder
 
-uv run uvicorn src.api.main:app --reload
+# uv run uvicorn src.api.main:app --reload
 
-Wait until you see "Application startup complete" and "Uvicorn running on http://127.0.0.1:8000".
+# Wait until you see "Application startup complete" and "Uvicorn running on http://127.0.0.1:8000".
 
 
-Terminal 2: Start the Streamlit Frontend
-Open a new terminal window, navigate to your project folder, and run this command to start the UI.
+# Terminal 2: Start the Streamlit Frontend
+# Open a new terminal window, navigate to your project folder, and run this command to start the UI.
 
-# Make sure you are in the root project folder: 
+# # Make sure you are in the root project folder: 
 
-uv run streamlit run src/frontend/app.py
+# uv run streamlit run src/frontend/app.py
 
-Access the App
-Streamlit will automatically open your default web browser to the app URL, which is usually:
+# Access the App
+# Streamlit will automatically open your default web browser to the app URL, which is usually:
 
-http://localhost:8501
+# http://localhost:8501
 
-You can now enter a ticker like "NVDA" in the sidebar and click "Run Full Analysis". Watch your terminals to see the logs as the agents work!
-'''
+# You can now enter a ticker like "NVDA" in the sidebar and click "Run Full Analysis". Watch your terminals to see the logs as the agents work!
+# '''

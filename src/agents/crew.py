@@ -53,4 +53,4 @@ async def run_financial_crew(ticker: str) -> str:
     print(f"\n🚀 Kicking off Financial Analysis for {ticker}...")
     result = await financial_crew.kickoff_async()
     
-    return result
+    return str(result)

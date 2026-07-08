@@ -2,6 +2,7 @@
 Main Entry Point.
 Runs the Crew -> Uploads to Blob Storage -> Saves to PostgreSQL.
 """
+import asyncio
 import os
 import sys
 from dotenv import load_dotenv
@@ -33,7 +34,7 @@ def main():
     try:
         # 1. Run AI
         # 'result_object' is a complex CrewOutput object (contains token usage, tasks, etc.)
-        result_object = run_financial_crew(ticker)
+        result_object = asyncio.run(run_financial_crew(ticker))
         
         # ---------------------------------------------------------
         # FIX: Extract the raw text string from the object
